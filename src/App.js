@@ -1,33 +1,37 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import "./App.css";
-import ComponentCardContainer from "./Components/ComponentCardContainer";
 import axios from "axios";
+import APODComp from "./Components/ComponentCardContainer"
+
 
 function App() {
-  const [data, setData] = useState([]);
 
-  useEffect(() => {
-    axios.get("https://api.nasa.gov/planetary/apod?api_key=TvE1IYeov47cGJDDL9v0WPeGUkRHTfQeZ3tupeAR")
-    .then(response => {
-       setData(response.data);
-      console.log(response.data);
-    })
+  const [APOD, setAPOD] = React.useState({})
 
-  .catch(error => {
-    console.log("Uh ohhh! Where's my data??!!", error);
-});
+  React.useEffect(() => {
+   // https://api.nasa.gov/planetary/apod?api_key=vP2VvW1hevv1HkpHeZFlYmECwteEo6l7ThHfifZC
+   console.log(axios);
 
-}, []);
+   axios.get("https://api.nasa.gov/planetary/apod?api_key=vP2VvW1hevv1HkpHeZFlYmECwteEo6l7ThHfifZC")
+   .then((response)=>{
+    console.log(response);
+    return response.data;
+   }).then((data)=>{
+    console.log(data);
+    setAPOD(data);
+   })
+   console.log("once");
+  }, [])
 
   return (
     <div className="App">
-      <ComponentCardContainer />
-      <p>
-        Read through the instructions in the README.md file to build your NASA
-        app! Have fun 🚀!
-      </p>
+      <p>NASA PHOTO OF THE DAY!</p>
+      <APODComp data={APOD}/>
     </div>
   );
 }
 
 export default App;
+  
+
+  

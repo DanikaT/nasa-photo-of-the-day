@@ -1,16 +1,16 @@
-import React from "react";
-import ComponentCard from "./ComponentCard";
+import React  from "react";
 
-function ComponentCardContainer() {
+const APODComp = (props) => {
     return (
-      <div className="App">
-          <ComponentCard />
-        <p>
-          Read through the instructions in the README.md file to build your NASA
-          app! Have fun 🚀!
-        </p>
-      </div>
+        <div className="data">
+        {/*JSON.stringify(props.data)*/}
+        <h1>{props.data.title}</h1>
+        <img className="space-img" src={props.data.url} alt={props.data.title}/>
+        <p className="explanation">{props.data.explanation}</p>
+        </div>
     );
-  }
+}
+
+export default APODComp;
   
-  export default ComponentCardContainer;
+  
